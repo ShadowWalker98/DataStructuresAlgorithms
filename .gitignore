@@ -1,0 +1,5 @@
+# ignore the idea files
+
+out/
+
+.DS_STORE
