@@ -1,9 +1,5 @@
 package com.satyajit.implementations;
 
-import com.satyajit.interfaces.LinkedList;
-
-import java.util.Objects;
-
 public class Node<T> {
 
     private T data;

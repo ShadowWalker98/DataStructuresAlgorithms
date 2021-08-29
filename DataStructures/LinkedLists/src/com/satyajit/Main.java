@@ -1,10 +1,6 @@
 package com.satyajit;
 
 import com.satyajit.implementations.LinkedListImpl;
-import com.satyajit.implementations.Node;
-
-import java.util.Objects;
-import java.util.Random;
 
 public class Main {
 

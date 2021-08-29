@@ -1,7 +1,5 @@
 package com.satyajit.interfaces;
 
-import com.satyajit.implementations.Node;
-
 public interface LinkedList<T> {
 
     public void add(T data);
