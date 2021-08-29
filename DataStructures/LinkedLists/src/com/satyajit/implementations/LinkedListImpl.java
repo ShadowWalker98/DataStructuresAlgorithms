@@ -15,7 +15,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     @Override
     public void add(T data) {
         // if the list is empty
-        if(Objects.isNull(this.headNode)) {
+        if(this.empty()) {
             this.headNode = new Node<>(data);
         } else {
             Node<T> runner = headNode;
@@ -29,15 +29,12 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
     @Override
     public void addAt(int pos, T data) {
-        // adds a node of type T at position pos (1 - n)
-        //TODO: Review logic for adding a node to the middle of a linked list
-
         if(pos <= 0) {
             System.out.println("Invalid parameter - position should be not be less than or equal to zero");
             return;
         }
 
-        if(Objects.isNull(this.headNode)) {
+        if(this.empty()) {
             if(pos == 1) {
                 this.add(data);
                 return;
@@ -88,7 +85,20 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
     @Override
     public void deleteTail() {
+        Node<T> runner = this.headNode;
+        if(this.empty()) {
+            System.out.println("List is empty");
+            return;
+        }
+        if(Objects.isNull(this.headNode.getNext())) {
+            this.headNode = null;
+            return;
+        }
 
+        while(Objects.nonNull(runner.getNext().getNext())) {
+            runner = runner.getNext();
+        }
+        runner.setNext(null);
     }
 
     @Override
@@ -113,20 +123,26 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
     @Override
     public int length() {
-        return 0;
+        int totalLength = 0;
+        Node<T> runner = headNode;
+        while(Objects.nonNull(runner)) {
+            totalLength++;
+            runner = runner.getNext();
+        }
+        return totalLength;
     }
 
     @Override
     public boolean empty() {
-        return false;
+        return Objects.isNull(this.headNode);
     }
 
     @Override
     public void printList() {
-        if(Objects.isNull(this.headNode))
+        if(this.empty())
             System.out.println("list is empty");
         else {
-            Node runner = this.headNode;
+            Node<T> runner = this.headNode;
             while(Objects.nonNull(runner)) {
                 System.out.println("node data: " + runner.getData());
                 runner = runner.getNext();
