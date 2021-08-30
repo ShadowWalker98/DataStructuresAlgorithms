@@ -103,7 +103,32 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
     @Override
     public void deleteAt(int position) {
+        if(empty()) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node<T> runner = this.headNode;
+        Node<T> previousNode = null;
+        int pos = 0;
+        while(Objects.nonNull(runner)) {
+            pos++;
+            if(pos == position) {
+                break;
+            }
+            previousNode = runner;
+            runner = runner.getNext();
+        }
 
+        if(pos < position) {
+            System.out.println("List doesn't have enough nodes to delete at position " + position);
+            return;
+        }
+
+        if(Objects.isNull(previousNode)) {
+            this.headNode = this.headNode.getNext();
+            return;
+        }
+        previousNode.setNext(runner.getNext());
     }
 
     @Override
