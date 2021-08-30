@@ -3,10 +3,14 @@ package com.satyajit.implementations;
 import com.satyajit.interfaces.LinkedList;
 
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LinkedListImpl<T> implements LinkedList<T> {
 
     Node<T> headNode;
+
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public LinkedListImpl() {
         this.headNode = null;
@@ -30,7 +34,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     @Override
     public void addAt(int pos, T data) {
         if(pos <= 0) {
-            System.out.println("Invalid parameter - position should be not be less than or equal to zero");
+            logger.log(Level.SEVERE,"Invalid parameter - position should be not be less than or equal to zero");
             return;
         }
 
@@ -39,7 +43,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
                 this.add(data);
                 return;
             }
-            System.out.println("List is empty");
+            logger.log(Level.INFO,"List is empty");
             return;
         }
 
@@ -61,7 +65,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
         }
 
         if(traversed < (pos - 1)) {
-            System.out.printf("Item %s can't be added at position %d\n", data.toString(), pos);
+            logger.log(Level.WARNING,"Item " + data.toString() + " can't be added at position " + pos + "\n");
         } else {
             Node<T> newNode = new Node<>(data);
             newNode.setNext(runner.getNext());
@@ -73,7 +77,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     @Override
     public void deleteHead() {
         if(Objects.isNull(this.headNode)) {
-            System.out.println("List is empty");
+            logger.log(Level.INFO,"List is empty");
             return;
         }
         if(Objects.isNull(this.headNode.getNext())) {
@@ -87,7 +91,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     public void deleteTail() {
         Node<T> runner = this.headNode;
         if(this.empty()) {
-            System.out.println("List is empty");
+            logger.log(Level.INFO,"List is empty");
             return;
         }
         if(Objects.isNull(this.headNode.getNext())) {
@@ -104,7 +108,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     @Override
     public void deleteAt(int position) {
         if(empty()) {
-            System.out.println("List is empty");
+            logger.log(Level.INFO,"List is empty");
             return;
         }
         Node<T> runner = this.headNode;
@@ -120,7 +124,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
         }
 
         if(pos < position) {
-            System.out.println("List doesn't have enough nodes to delete at position " + position);
+            logger.log(Level.WARNING,"Item can't be deleted at position " + position + "\n");
             return;
         }
 
@@ -165,7 +169,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     @Override
     public void printList() {
         if(this.empty())
-            System.out.println("list is empty");
+            logger.log(Level.INFO,"List is empty");
         else {
             Node<T> runner = this.headNode;
             while(Objects.nonNull(runner)) {
