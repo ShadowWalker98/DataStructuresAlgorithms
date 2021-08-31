@@ -136,7 +136,31 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     }
 
     @Override
-    public void deleteData(Object data) {
+    public void deleteData(T data) {
+        if(this.empty()) return;
+
+        if(Objects.isNull(this.headNode.getNext())) {
+            if(this.headNode.getData() == data) {
+                this.headNode = null;
+            }
+            return;
+        }
+
+        Node<T> runner = this.headNode;
+        Node<T> previousNode = null;
+
+        while(Objects.nonNull(runner)) {
+            if(runner.getData() == data) {
+                if(Objects.isNull(previousNode)) {
+                    this.headNode = this.headNode.getNext();
+                } else {
+                    previousNode.setNext(runner.getNext());
+                }
+                break;
+            }
+            previousNode = runner;
+            runner = runner.getNext();
+        }
 
     }
 
