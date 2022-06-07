@@ -1,10 +1,10 @@
-package com.satyajit.implementations;
-
-import com.satyajit.interfaces.LinkedList;
+package com.satyajit.DataStructures.LinkedLists.implementations;
 
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.satyajit.interfaces.LinkedList;
 
 public class LinkedListImpl<T> implements LinkedList<T> {
 

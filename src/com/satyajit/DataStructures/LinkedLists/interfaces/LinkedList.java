@@ -1,4 +1,4 @@
-package com.satyajit.interfaces;
+package com.satyajit.DataStructures.LinkedLists.interfaces;
 
 public interface LinkedList<T> {
 

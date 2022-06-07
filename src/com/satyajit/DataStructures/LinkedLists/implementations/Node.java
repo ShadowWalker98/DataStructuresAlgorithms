@@ -1,4 +1,4 @@
-package com.satyajit.implementations;
+package com.satyajit.DataStructures.LinkedLists.implementations;
 
 public class Node<T> {
 
