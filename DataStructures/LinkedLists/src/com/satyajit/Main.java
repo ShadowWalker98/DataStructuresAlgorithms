@@ -5,6 +5,7 @@ import com.satyajit.implementations.LinkedListImpl;
 public class Main {
 
     public static void main(String[] args) {
+		System.out.println("Hello inside the main function!");
         LinkedListImpl<Integer> linkedList = new LinkedListImpl<>();
         setUp(linkedList);
     }
